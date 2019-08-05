@@ -1,11 +1,11 @@
 import React from 'react';
+import Header from './components/Header/Header';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-     <button className='btn btn-primary'>Hello world</button>
+    <div>
+      <Header/>
     </div>
-  );
+  )
 }
-
 export default App;
