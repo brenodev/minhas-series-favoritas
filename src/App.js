@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import axios from 'axios'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 //CUSTOM COMPONENTS
@@ -8,12 +9,20 @@ import Genres from './components/Genres/Genres';
 
 
 const App = () => {
+  const [data, setData] = useState()
+  useEffect(()=> {
+    axios.get('/api').then(res => {
+      setData(res.data)
+    })
+  }, [])
+  
   return (
     <Router>
       <div>
         <Header />
         <Route exact path='/' component={Home} />
         <Route path='/generos' component={Genres} />
+        <pre>{JSON.stringify(data)}</pre>
       </div>
     </Router>
   )
