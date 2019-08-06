@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Genres = () => {
   const [data, setData] = useState([]);
@@ -8,6 +9,15 @@ const Genres = () => {
       setData(res.data.data);
     });
   }, []);
+
+  const deleteGenres = id => {
+    axios.delete("/api/genres/" + id).then(res => {
+      // console.log(res);
+      const filterItem = data.filter(item => item.id !== id);
+      setData(filterItem);
+    });
+  };
+
   // tranformar um vetor em outro vetor
   const renderRow = record => {
     return (
@@ -15,25 +25,31 @@ const Genres = () => {
         <th scope="row">{record.id}</th>
         <td>{record.name}</td>
         <td>
-          <button>+</button>
+          <button onClick={() => deleteGenres(record.id)}>-</button>
         </td>
       </tr>
     );
   };
 
-  if(data.length === 0) {
+  if (data.length === 0) {
     return (
       <div>
         <h1>Gêneros</h1>
-        <div className="alert alert-warning" role='alert'>
-         Você não possui gêneros criados!
+        <div className="alert alert-warning" role="alert">
+          Você não possui gêneros criados!
         </div>
       </div>
-    )
+    );
   }
 
   return (
-    <div className='container'>
+    <div className="container">
+      <h1>Gêneros</h1>
+      <div>
+        <Link to="/generos/novo">
+          <button className="btn btn-primary">Novo Genero</button>
+        </Link>
+      </div>
       <table className="table table-dark">
         <thead>
           <tr>
@@ -42,9 +58,7 @@ const Genres = () => {
             <th scope="col">Ações</th>
           </tr>
         </thead>
-        <tbody>
-          {data.map(renderRow)}
-        </tbody>
+        <tbody>{data.map(renderRow)}</tbody>
       </table>
     </div>
   );

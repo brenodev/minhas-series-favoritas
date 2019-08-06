@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const NewGenres = () => {
   const [name, setName] = useState("");
+  const [success, setSuccess] = useState(false);
   const onChange = evt => {
     // console.log(evt.target.value)
     setName(evt.target.value);
@@ -14,9 +16,13 @@ const NewGenres = () => {
         name
       })
       .then(res => {
-        console.log(res);
+        setSuccess(true);
       });
   };
+
+  if (success) {
+    return <Redirect to="/generos" />;
+  }
 
   return (
     <div className="container">
