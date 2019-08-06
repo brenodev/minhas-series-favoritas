@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Genres from "./components/Genres/Genres";
 import NewGenres from "./components/Genres/NewGenres/NewGenres";
+import EditGenres from "./components/Genres/EditGenres/EditGenres";
 
 const App = () => {
   const [data, setData] = useState();
@@ -21,6 +22,7 @@ const App = () => {
       <div>
         <Header />
         <Route exact path="/" component={Home} />
+        <Route path="/generos/:id" exact component={EditGenres} />
         <Route path="/generos/novo" exact component={NewGenres} />
         <Route path="/generos" exact component={Genres} />
         <pre>{JSON.stringify(data)}</pre>

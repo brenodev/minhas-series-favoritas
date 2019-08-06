@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
-const NewGenres = () => {
+const EditGenres = ({ match }) => {
   const [name, setName] = useState("");
   const [success, setSuccess] = useState(false);
+
+  // metodo para editar genero
+  useEffect(() => {
+    axios.get("/api/genres/" + match.params.id).then(res => {
+      setName(res.data.name);
+    });
+  }, [match.params.id]);
+
   const onChange = evt => {
     // console.log(evt.target.value)
     setName(evt.target.value);
@@ -12,7 +20,7 @@ const NewGenres = () => {
 
   const onSave = () => {
     axios
-      .post("/api/genres", {
+      .put("/api/genres/" + match.params.id, {
         name
       })
       .then(res => {
@@ -26,7 +34,7 @@ const NewGenres = () => {
 
   return (
     <div className="container">
-      <h1>Novo Gênero</h1>
+      <h1>Editar Gênero</h1>
       <form action="">
         <div className="form-group">
           <label htmlFor="name">Nome do Gênero</label>
@@ -47,4 +55,4 @@ const NewGenres = () => {
   );
 };
 
-export default NewGenres;
+export default EditGenres;

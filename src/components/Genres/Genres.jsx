@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 
 const Genres = () => {
   const [data, setData] = useState([]);
@@ -25,7 +27,14 @@ const Genres = () => {
         <th scope="row">{record.id}</th>
         <td>{record.name}</td>
         <td>
-          <button onClick={() => deleteGenres(record.id)}>-</button>
+          <FontAwesomeIcon
+            onClick={() => deleteGenres(record.id)}
+            icon={faTrash}
+            className="text-danger"
+          />
+          <Link to={"/generos/" + record.id}>
+            <FontAwesomeIcon icon={faPen} />
+          </Link>
         </td>
       </tr>
     );
