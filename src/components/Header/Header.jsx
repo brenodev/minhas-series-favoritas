@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -7,34 +7,42 @@ import {
   NavItem,
   NavLink,
   NavbarToggler
-} from 'reactstrap'
+} from "reactstrap";
 
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const toggle = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   return (
     <div>
-      <Navbar color='light' light expand='md'>
-        <NavbarBrand tag={Link} to='/'>Minhas Séries</NavbarBrand>
-        <NavbarToggler onClick={toggle}/>
-        <Collapse isOpen={open} navbar>
-          <Nav className='ml-auto' navbar>
-            <NavItem>
-              <NavLink tag={Link} to='/generos'>
-                Genêros
-              </NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
+      <Navbar color="light" light expand="md">
+        <div className="container">
+          <NavbarBrand tag={Link} to="/">
+            Minhas Séries
+          </NavbarBrand>
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={open} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink tag={Link} to="/series">
+                  Séries
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/generos">
+                  Genêros
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </div>
       </Navbar>
     </div>
   );
-}
+};
 
-export default Header
+export default Header;

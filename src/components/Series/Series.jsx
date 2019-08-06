@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 
-const Genres = () => {
+const Series = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("api/genres").then(res => {
+    axios.get("api/series").then(res => {
       setData(res.data.data);
     });
   }, []);
 
-  const deleteGenres = id => {
-    axios.delete("/api/genres/" + id).then(res => {
+  const deleteSerie = id => {
+    axios.delete("/api/series/" + id).then(res => {
       // console.log(res);
       const filterItem = data.filter(item => item.id !== id);
       setData(filterItem);
@@ -28,7 +28,7 @@ const Genres = () => {
         <td>{record.name}</td>
         <td>
           <FontAwesomeIcon
-            onClick={() => deleteGenres(record.id)}
+            onClick={() => deleteSerie(record.id)}
             icon={faTrash}
             className="text-danger"
           />
@@ -43,12 +43,12 @@ const Genres = () => {
   if (data.length === 0) {
     return (
       <div className="container">
-        <h1>Gêneros</h1>
+        <h1>Séries</h1>
         <div className="alert alert-warning" role="alert">
-          Você não possui gêneros criados!
+          Você não possui séries criadas!
         </div>
-        <Link to="/generos/novo">
-          <button className="btn btn-primary">Novo Genero</button>
+        <Link to="/series/novo">
+          <button className="btn btn-primary">Nova Série</button>
         </Link>
       </div>
     );
@@ -56,10 +56,10 @@ const Genres = () => {
 
   return (
     <div className="container">
-      <h1>Gêneros</h1>
+      <h1>Séries</h1>
       <div>
-        <Link to="/generos/novo">
-          <button className="btn btn-primary">Novo Genero</button>
+        <Link to="/series/novo">
+          <button className="btn btn-primary">Nova Série</button>
         </Link>
       </div>
       <table className="table table-dark">
@@ -76,4 +76,4 @@ const Genres = () => {
   );
 };
 
-export default Genres;
+export default Series;
