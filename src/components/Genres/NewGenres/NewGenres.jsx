@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const NewGenres = () => {
+  const [name, setName] = useState("");
+  const onChange = evt => {
+    // console.log(evt.target.value)
+    setName(evt.target.value);
+  };
+
+  const onSave = () => {
+    axios
+      .post("/api/genres", {
+        name
+      })
+      .then(res => {
+        console.log(res);
+      });
+  };
+
   return (
     <div className="container">
       <h1>Novo Gênero</h1>
+      <p>{name}</p>
       <form action="">
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="name">Nome do Gênero</label>
           <input
-            type="email"
+            onChange={onChange}
+            type="text"
             className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
+            id="name"
+            value={name}
+            placeholder="nome do gênero"
           />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
         </div>
+        <button onClick={onSave} type="button" className="btn btn-primary">
+          Salvar Gênero
+        </button>
       </form>
     </div>
   );

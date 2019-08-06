@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Deve rodar o server do projeto na porta 3002
+
 ## Available Scripts
 
 In the project directory, you can run:
