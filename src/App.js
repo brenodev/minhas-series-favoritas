@@ -9,6 +9,7 @@ import NewGenres from "./components/Genres/NewGenres/NewGenres";
 import EditGenres from "./components/Genres/EditGenres/EditGenres";
 import Series from "./components/Series/Series";
 import NewSerie from "./components/Series/NewSerie/NewSerie";
+import InfoSerie from "./components/Series/InfoSerie/InfoSerie";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/generos/:id" exact component={EditGenres} />
           <Route path="/series" exact component={Series} />
           <Route path="/series/novo" exact component={NewSerie} />
+          <Route path="/series/:id" exact component={InfoSerie} />
         </Switch>
       </div>
     </Router>

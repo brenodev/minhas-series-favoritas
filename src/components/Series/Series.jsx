@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Series = () => {
   const [data, setData] = useState([]);
@@ -27,14 +27,18 @@ const Series = () => {
         <th scope="row">{record.id}</th>
         <td>{record.name}</td>
         <td>
-          <FontAwesomeIcon
-            onClick={() => deleteSerie(record.id)}
-            icon={faTrash}
-            className="text-danger"
-          />
-          <Link to={"/generos/" + record.id}>
-            <FontAwesomeIcon icon={faPen} />
-          </Link>
+          <button className="btn btn-outline">
+            <FontAwesomeIcon
+              onClick={() => deleteSerie(record.id)}
+              icon={faTrash}
+              className="text-danger"
+            />
+          </button>
+          <button className="btn btn-outline">
+            <Link to={"/series/" + record.id}>
+              <FontAwesomeIcon icon={faEye} />
+            </Link>
+          </button>
         </td>
       </tr>
     );

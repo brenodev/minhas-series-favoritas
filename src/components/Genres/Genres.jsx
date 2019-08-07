@@ -27,14 +27,18 @@ const Genres = () => {
         <th scope="row">{record.id}</th>
         <td>{record.name}</td>
         <td>
-          <FontAwesomeIcon
-            onClick={() => deleteGenres(record.id)}
-            icon={faTrash}
-            className="text-danger"
-          />
-          <Link to={"/generos/" + record.id}>
-            <FontAwesomeIcon icon={faPen} />
-          </Link>
+          <button className="btn btn-outline">
+            <FontAwesomeIcon
+              onClick={() => deleteGenres(record.id)}
+              icon={faTrash}
+              className="text-danger"
+            />
+          </button>
+          <button className="btn btn-outline">
+            <Link to={"/generos/" + record.id}>
+              <FontAwesomeIcon icon={faPen} />
+            </Link>
+          </button>
         </td>
       </tr>
     );
